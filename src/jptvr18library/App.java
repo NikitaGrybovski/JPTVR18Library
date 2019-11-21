@@ -6,8 +6,10 @@
 package jptvr18library;
 
 import entity.Book;
+import entity.Reader;
 import java.util.Scanner;
 import myclasses.BookProvider;
+import myclasses.ReaderProvider;
 
 /**
  *
@@ -15,6 +17,7 @@ import myclasses.BookProvider;
  */
 public class App {
 private Book book;
+private Reader reader;
     public void run(){
         System.out.println("Консольная библиотека");
         
@@ -40,9 +43,12 @@ private Book book;
                     break;
             //list of books
                 case 2:
+                    
                     break;
             //register new Reader
                 case 3:
+                    ReaderProvider readerProvider = new ReaderProvider();
+                    reader = readerProvider.createReader();
                     break;
             //give a book
                 case 4:
