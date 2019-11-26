@@ -6,22 +6,28 @@
 package jptvr18library;
 
 import entity.Book;
+import entity.History;
 import entity.Reader;
+import java.util.ArrayList;
 import java.util.Scanner;
 import myclasses.BookProvider;
 import myclasses.ReaderProvider;
+import myclasses.HistoryProvider;
 
 /**
  *
  * @author pupil
  */
 public class App {
-private Book book;
-private Reader reader;
+
+private ArrayList<Book> books = new ArrayList<>();
+private ArrayList<Reader> readers = new ArrayList<>();
+private History history;
+
     public void run(){
         System.out.println("Консольная библиотека");
         
-        OUTER:
+         boolean repeat = true;
         do {
             System.out.println("0. Выход из программы");
             System.out.println("1. Новая книга");
@@ -29,38 +35,63 @@ private Reader reader;
             System.out.println("3. Зарегистрировать читателя");
             System.out.println("4. Выдать книгу");
             System.out.println("5. Вернуть книгу");
+            System.out.println("6. Список выданных книг");
+            System.out.println("7. Список читателей");
             System.out.println("Выбериите задачу: ");
+            repeat = true;
             Scanner scanner =  new Scanner(System.in);
             int task = scanner.nextInt();
             switch (task) {
                 case 0:
                     System.out.println("Закрытие программы");
-                    break OUTER;
+                    repeat = false;
+                    break;
             //new book
                 case 1:
                     BookProvider bookProvider = new BookProvider();
-                    book = bookProvider.createBook();
+                    books.add(bookProvider.createBook());
                     break;
             //list of books
                 case 2:
+                    for(int i = 0; i<books.size();i++){
+                        System.out.println(books.get(i).toString());
+                    }
                     
                     break;
             //register new Reader
                 case 3:
                     ReaderProvider readerProvider = new ReaderProvider();
-                    reader = readerProvider.createReader();
+                    readers.add(readerProvider.createReader());
                     break;
             //give a book
                 case 4:
+                    HistoryProvider historyProvider = new HistoryProvider();
+                    history = historyProvider.takeOnBook(books,readers);
+                    
                     break;
             //return a book
                 case 5:
+                    historyProvider = new HistoryProvider();
+                    history = historyProvider.returnBook(history);
+                    break;
+                case 6:
+                    System.out.printf("Читатель %s %s читает %s%n1",
+                    history.getReader().getName(),
+                    history.getReader().getSurname(),
+                    history.getBook().getName()
+                            );
+                    break;
+                case 7:
+                    for(int i = 0; i<readers.size();i++){
+                        System.out.println(readers.get(i).toString());
+                    }
+                    
                     break;
                 default:
                     System.out.println("Такой задачи нет!");
                     break;
             }
-        } while (true);
+        } while (repeat);
         
     }
     

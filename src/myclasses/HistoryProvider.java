@@ -5,10 +5,29 @@
  */
 package myclasses;
 
+import entity.Book;
+import entity.History;
+import entity.Reader;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author pupil
  */
 public class HistoryProvider {
-    History 
-}
+    public History takeOnBook(ArrayList<Book> books,ArrayList<Reader> readers){
+        History history = new History();
+        
+        
+        
+        
+        
+        return history;
+    }
+    public History returnBook(History history){
+        history.setReturnOfDate(new Date());
+        return history;
+    }
+ }
+

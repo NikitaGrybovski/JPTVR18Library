@@ -28,8 +28,11 @@ public class ReaderProvider {
         scanner.nextLine();
         System.out.println("год");
         int year = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Телефон");
+        String phone = scanner.nextLine();
         
-        Reader reader = new Reader(name, surname, day, month, year, name);
+        Reader reader = new Reader(name, surname, day, month, year, phone);
         
         return reader;
     
