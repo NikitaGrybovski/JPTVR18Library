@@ -22,7 +22,7 @@ public class App {
 
 private ArrayList<Book> books = new ArrayList<>();
 private ArrayList<Reader> readers = new ArrayList<>();
-private History history;
+private ArrayList<History> histories = new ArrayList<>();
 
     public void run(){
         System.out.println("Консольная библиотека");
@@ -66,20 +66,25 @@ private History history;
             //give a book
                 case 4:
                     HistoryProvider historyProvider = new HistoryProvider();
-                    history = historyProvider.takeOnBook(books,readers);
+                    histories.add(historyProvider.takeOnBook(books,readers));
                     
                     break;
             //return a book
                 case 5:
                     historyProvider = new HistoryProvider();
-                    history = historyProvider.returnBook(history);
+                    histories = historyProvider.returnBook(histories);
                     break;
                 case 6:
+                    History history = null;
+                    for(int i = 0; i<histories.size();i++){
+                        history = histories.get(i);
                     System.out.printf("Читатель %s %s читает %s%n1",
                     history.getReader().getName(),
                     history.getReader().getSurname(),
                     history.getBook().getName()
                             );
+                    }
+                    
                     break;
                 case 7:
                     for(int i = 0; i<readers.size();i++){
