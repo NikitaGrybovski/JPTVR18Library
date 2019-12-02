@@ -13,6 +13,7 @@ import java.util.Scanner;
 import myclasses.BookProvider;
 import myclasses.ReaderProvider;
 import myclasses.HistoryProvider;
+import storage.SaverToStorage;
 
 /**
  *
@@ -23,6 +24,15 @@ public class App {
 private ArrayList<Book> books = new ArrayList<>();
 private ArrayList<Reader> readers = new ArrayList<>();
 private ArrayList<History> histories = new ArrayList<>();
+
+    public App() {
+        SaverToStorage saverToStorage = new SaverToStorage();
+        this.books.addAll(saverToStorage.loadBooks());
+        this.readers.addAll(saverToStorage.loadReaders());
+        
+    }
+    
+
 
     public void run(){
         System.out.println("Консольная библиотека");
@@ -50,6 +60,8 @@ private ArrayList<History> histories = new ArrayList<>();
                 case 1:
                     BookProvider bookProvider = new BookProvider();
                     books.add(bookProvider.createBook());
+                    SaverToStorage saverToStorage = new SaverToStorage();
+                    saverToStorage.saveBooks(books);
                     break;
             //list of books
                 case 2:
@@ -62,6 +74,9 @@ private ArrayList<History> histories = new ArrayList<>();
                 case 3:
                     ReaderProvider readerProvider = new ReaderProvider();
                     readers.add(readerProvider.createReader());
+                    saverToStorage = new SaverToStorage();
+                    saverToStorage.saveReaders(readers);
+                    
                     break;
             //give a book
                 case 4:
@@ -72,7 +87,7 @@ private ArrayList<History> histories = new ArrayList<>();
             //return a book
                 case 5:
                     historyProvider = new HistoryProvider();
-                    histories = historyProvider.returnBook(histories);
+                    historyProvider.returnBook(histories);
                     break;
                 case 6:
                     History history = null;

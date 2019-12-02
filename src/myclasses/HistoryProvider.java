@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author pupil
  */
 public class HistoryProvider {
-    private Scanner scanner = new Scanner();
+    private Scanner scanner = new Scanner(System.in);
     public History takeOnBook(ArrayList<Book> books,ArrayList<Reader> readers){
         System.out.println("Список книг: ");
         for (int i = 0; i < books.size(); i++) {
@@ -40,10 +40,11 @@ public class HistoryProvider {
         int indexReader = scanner.nextInt();
         
         Reader reader = readers.get(indexReader);
-        History history = new History();
-        history.setBook(book);
-        history.setReader(reader);
-        history.setGiveOfDate(new Date());
+        History history = new History(new Date(), null, book, reader);
+//        History history = new History();
+//        history.setBook(book);
+//        history.setReader(reader);
+//        history.setGiveOfDate(new Date());
         
         
         
@@ -53,9 +54,21 @@ public class HistoryProvider {
    
         return history;
     }
-    public ArrayList<History> returnBook(ArrayList<History> histories){
-        //history.setReturnOfDate(new Date());
-        return histories;
+    public void returnBook(ArrayList<History> histories){
+        System.out.println("-----------Возврат книги-----------");
+        System.out.println("Список историй");
+        for (int i = 0; i < histories.size(); i++) {
+            History history = histories.get(i);
+            System.out.println(i+". Читатель "+history.getReader().getName()+" "+history.getReader().getSurname()+" читает книгу: "+history.getBook().getName());
+            
+        }
+        System.out.println("Выберите номер истории: ");
+        int numHistory = scanner.nextInt();
+        History history =  histories.get(numHistory);
+        history.setReturnOfDate(new Date());
+        
+        
+        
     }
  }
 
