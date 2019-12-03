@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author pupil
+ * @author Melnikov
  */
 public class Reader implements Serializable{
     private String name;
@@ -87,13 +87,13 @@ public class Reader implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.surname);
-        hash = 37 * hash + this.day;
-        hash = 37 * hash + this.month;
-        hash = 37 * hash + this.year;
-        hash = 37 * hash + Objects.hashCode(this.phone);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.surname);
+        hash = 59 * hash + this.day;
+        hash = 59 * hash + this.month;
+        hash = 59 * hash + this.year;
+        hash = 59 * hash + Objects.hashCode(this.phone);
         return hash;
     }
 
@@ -129,6 +129,4 @@ public class Reader implements Serializable{
         }
         return true;
     }
-    
-    
 }

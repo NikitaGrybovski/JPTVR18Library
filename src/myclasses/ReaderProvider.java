@@ -10,31 +10,30 @@ import java.util.Scanner;
 
 /**
  *
- * @author pupil
+ * @author Melnikov
  */
 public class ReaderProvider {
     public Reader createReader(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("----Регистрация пользователя----");
-        System.out.println("Имя ");
+        System.out.println("---- Создание читателя ----");
+        System.out.println("Имя читателя: ");
         String name = scanner.nextLine();
-        System.out.println("Фамилия");
+        System.out.println("Фамилия читателя: ");
         String surname = scanner.nextLine();
-        System.out.println("День");
-        int day = scanner.nextInt();
+        System.out.println("День рождения: ");
+        int day  = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Месяц");
-        int month = scanner.nextInt();
+        System.out.println("Месяц рождения: ");
+        int month  = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("год");
-        int year = scanner.nextInt();
+        System.out.println("Год рождения: ");
+        int year  = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Телефон");
+        System.out.println("Телефон читателя: ");
         String phone = scanner.nextLine();
         
         Reader reader = new Reader(name, surname, day, month, year, phone);
-        
+
         return reader;
-    
     }
 }

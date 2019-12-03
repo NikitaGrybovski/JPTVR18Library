@@ -10,23 +10,22 @@ import java.util.Scanner;
 
 /**
  *
- * @author pupil
+ * @author Melnikov
  */
 public class BookProvider {
     public Book createBook(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("----Создание книги----");
-        System.out.println("Название книги: ");
+        System.out.println("--- Создание книги ---");
+        System.out.println("Название книги:");
         String name = scanner.nextLine();
         System.out.println("Автор книги:");
         String author = scanner.nextLine();
         System.out.println("Год издания:");
         int publishedYear = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Isbn книги:");
+        System.out.println("ISBN идентификатор книги:");
         String isbn = scanner.nextLine();
         Book book = new Book(name, author, publishedYear, isbn);
-       
         return book;
     }
 }

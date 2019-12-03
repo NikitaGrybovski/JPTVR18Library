@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package entity;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
 /**
  *
- * @author pupil
+ * @author Melnikov
  */
-public class History {
+public class History implements Serializable{
     private Date giveOfDate;
     private Date returnOfDate;
     private Book book;
@@ -60,16 +63,23 @@ public class History {
 
     @Override
     public String toString() {
-        return "History{" + "giveOfDate=" + giveOfDate + ", returnOfDate=" + returnOfDate + ", book=" + book.getName() + ", reader=" + reader.getSurname() + ", author= " + book.getAuthor()+ '}';
+        return "History{" 
+                + "giveOfDate=" + giveOfDate 
+                + ", returnOfDate=" + returnOfDate 
+                + ", book=" + book.getName()
+                + ", " + book.getAuthor()
+                + ", reader=" + reader.getName()
+                + " " + reader.getSurname()
+                + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.giveOfDate);
-        hash = 43 * hash + Objects.hashCode(this.returnOfDate);
-        hash = 43 * hash + Objects.hashCode(this.book);
-        hash = 43 * hash + Objects.hashCode(this.reader);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.giveOfDate);
+        hash = 59 * hash + Objects.hashCode(this.returnOfDate);
+        hash = 59 * hash + Objects.hashCode(this.book);
+        hash = 59 * hash + Objects.hashCode(this.reader);
         return hash;
     }
 
@@ -99,6 +109,5 @@ public class History {
         }
         return true;
     }
-    
     
 }
