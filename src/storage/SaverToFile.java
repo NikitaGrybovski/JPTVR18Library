@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author Melnikov
  */
-public class SaverToStorage {
+public class SaverToFile {
 
     public void saveBooks(ArrayList<Book> books) {
         FileOutputStream fileOutputStream = null;
@@ -34,22 +34,22 @@ public class SaverToStorage {
             objectOutputStream.writeObject(books);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Books.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Books.txt", ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка записи Books.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка записи Books.txt", ex);
         }finally{
             if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
             if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
         }
@@ -65,11 +65,11 @@ public class SaverToStorage {
             objectInputStream = new ObjectInputStream(fileInputStream);
             books = (ArrayList<Book>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Books.txt");
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Books.txt");
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка чтения Books.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка чтения Books.txt", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Не нашел класс Book", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Не нашел класс Book", ex);
         }
         return books;
     }
@@ -82,22 +82,22 @@ public class SaverToStorage {
             objectOutputStream.writeObject(readers);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Readers.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Readers.txt", ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка записи Readers.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка записи Readers.txt", ex);
         }finally{
             if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
             if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
         }
@@ -113,11 +113,11 @@ public class SaverToStorage {
             objectInputStream = new ObjectInputStream(fileInputStream);
             readers = (ArrayList<Reader>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Readers.txt");
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Readers.txt");
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка чтения Readers.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка чтения Readers.txt", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Не нашел класс Book", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Не нашел класс Book", ex);
         }
         return readers;
     }
@@ -130,22 +130,22 @@ public class SaverToStorage {
             objectOutputStream.writeObject(histories);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Histories.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Histories.txt", ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка записи Histories.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка записи Histories.txt", ex);
         }finally{
             if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
             if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
         }
@@ -161,11 +161,11 @@ public class SaverToStorage {
             objectInputStream = new ObjectInputStream(fileInputStream);
             histories = (ArrayList<History>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Нет файла Histories.txt");
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Нет файла Histories.txt");
         } catch (IOException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Ошибка чтения Histories.txt", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Ошибка чтения Histories.txt", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaverToStorage.class.getName()).log(Level.SEVERE, "Не нашел класс Histories", ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, "Не нашел класс Histories", ex);
         }
         return histories;
     }

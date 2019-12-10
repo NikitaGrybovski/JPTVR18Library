@@ -8,7 +8,7 @@ import java.util.Scanner;
 import myclasses.BookProvider;
 import myclasses.HistoryProvider;
 import myclasses.ReaderProvider;
-import storage.SaverToStorage;
+import storage.SaverToFile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,12 +24,12 @@ public class App {
 private ArrayList<Book> books = new ArrayList<>();
 private ArrayList<Reader> readers = new ArrayList<>();
 private ArrayList<History> histories = new ArrayList<>();
-SaverToStorage saverToStorage;
+private SaverToFile saverToFile;
     public App() {
-        this.saverToStorage = new SaverToStorage();
-        this.books.addAll(saverToStorage.loadBooks());
-        this.readers.addAll(saverToStorage.loadReaders());
-        this.histories.addAll(saverToStorage.loadHistories());
+        this.saverToFile = new SaverToFile();
+        this.books.addAll(saverToFile.loadBooks());
+        this.readers.addAll(saverToFile.loadReaders());
+        this.histories.addAll(saverToFile.loadHistories());
     }
 
     public void run() {
@@ -53,13 +53,13 @@ SaverToStorage saverToStorage;
                     System.out.println("Закрытие программы");
                     repeat = false;
                     break;
-            //Новая книга
+            
                 case 1:
                     BookProvider bookProvider = new BookProvider();
                     books.add(bookProvider.createBook());
-                    saverToStorage.saveBooks(books);
+                    saverToFile.saveBooks(books);
                     break;
-            //Список книг
+            
                 case 2:
                     boolean flag = true;
                     for (int i = 0; i < books.size(); i++) {
@@ -76,26 +76,26 @@ SaverToStorage saverToStorage;
                        flag=true; 
                     }
                     break;
-            //Новый читатель
+            
                 case 3:
            
                     ReaderProvider readerProvider = new ReaderProvider();
                     readers.add(readerProvider.createReader());
-                    saverToStorage.saveReaders(readers);
+                    saverToFile.saveReaders(readers);
                     break;
                 case 4:
                     HistoryProvider historyProvider = new HistoryProvider();
                     History history = historyProvider.takeOnBook(books, readers, histories);
                     if(history != null){
                         histories.add(history);
-                        saverToStorage.saveHistories(histories);
+                        saverToFile.saveHistories(histories);
                     }
                     break;
-            //Вернуть книгу
+            
                 case 5:
                     historyProvider = new HistoryProvider();
                     historyProvider.returnBook(histories);
-                    saverToStorage.saveHistories(histories);
+                    saverToFile.saveHistories(histories);
                     break;
                 case 6:
                     history = null;
