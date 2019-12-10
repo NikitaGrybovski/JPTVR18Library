@@ -53,35 +53,32 @@ SaverToStorage saverToStorage;
                     System.out.println("Закрытие программы");
                     repeat = false;
                     break;
-            
+            //Новая книга
                 case 1:
                     BookProvider bookProvider = new BookProvider();
                     books.add(bookProvider.createBook());
                     saverToStorage.saveBooks(books);
                     break;
-            
+            //Список книг
                 case 2:
-                    boolean flag = false;
+                    boolean flag = true;
                     for (int i = 0; i < books.size(); i++) {
                        for(History history: histories){
-                           if(history.getBook().equals(books.get(i)) &&
-                                   history.getReturnOfDate() == null
-                                   ){
+                           if(history.getBook().equals(books.get(i)) 
+                                    && history.getReturnOfDate()== null){
                                flag = false;
                                break;
                            }
                        }
-                    if(flag){
-                        System.out.println(books.get(i).toString());
+                       if(flag){
+                           System.out.println(i+1+". "+books.get(i).toString());
+                       }
+                       flag=true; 
                     }
-                    flag=true;
-                        
-                    
-                }
                     break;
-            
+            //Новый читатель
                 case 3:
-            
+           
                     ReaderProvider readerProvider = new ReaderProvider();
                     readers.add(readerProvider.createReader());
                     saverToStorage.saveReaders(readers);
@@ -90,11 +87,11 @@ SaverToStorage saverToStorage;
                     HistoryProvider historyProvider = new HistoryProvider();
                     History history = historyProvider.takeOnBook(books, readers, histories);
                     if(history != null){
+                        histories.add(history);
                         saverToStorage.saveHistories(histories);
                     }
-                    
                     break;
-            
+            //Вернуть книгу
                 case 5:
                     historyProvider = new HistoryProvider();
                     historyProvider.returnBook(histories);
@@ -104,15 +101,14 @@ SaverToStorage saverToStorage;
                     history = null;
                     for (int i = 0; i < histories.size(); i++) {
                         history = histories.get(i);
-                        if(history.getReturnOfDate() == null){
-                            System.out.printf("Читатель %s %s читает %s%n1",
+                        if(history.getReturnOfDate()==null){
+                            System.out.printf("Читатель %s %s читает %s%n",
                                 history.getReader().getName(),
                                 history.getReader().getSurname(),
                                 history.getBook().getName()
-                                );
-                        }else{
-                            System.out.println("Нету выданных книг");
+                            );
                         }
+                        
                     }
                     break;
                 case 7:
