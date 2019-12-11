@@ -29,8 +29,8 @@ private ArrayList<History> histories = new ArrayList<>();
 private Saveble saveble;
     public App() {
         this.saveble = new SaverToBase();
-        //this.books.addAll(saveble.loadBooks());
-        //this.readers.addAll(saveble.loadReaders());
+        this.books.addAll(saveble.loadBooks());
+        this.readers.addAll(saveble.loadReaders());
         //this.histories.addAll(saveble.loadHistories());
     }
 

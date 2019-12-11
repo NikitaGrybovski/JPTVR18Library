@@ -49,23 +49,65 @@ public class SaverToBase implements Saveble {
     }
     @Override
     public Collection<? extends Book> loadBooks(){
-        return null;
+        try{
+            return em.createQuery("SELECT book FROM Book book")
+                .getResultList();
+        } catch (Exception e){
+            return null;
+           }
+        
     }
     @Override
     public void saveReaders(ArrayList<Reader> readers){
-    
+        tx.begin();
+        for (int i = 0; i < readers.size(); i++) {
+            
+            Reader reader = readers.get(i);
+            if(reader.getId() == null){
+                em.persist(reader);
+            }
+            
+            
+            
+            
+        }
+        tx.commit();
     }
     @Override
     public Collection<? extends Reader> loadReaders(){
-        return null;
+         try{
+            return em.createQuery("SELECT reader FROM Reader reader")
+                .getResultList();
+        } catch (Exception e){
+            return null;
+           }
+        
     }
     @Override
     public void saveHistories(ArrayList<History> histories) {
+        tx.begin();
+        for (int i = 0; i < histories.size(); i++) {
+            
+            History history = histories.get(i);
+            if(history.getId() == null){
+                em.persist(history);
+            }
+            
+            
+            
+            
+        }
+        tx.commit();
     
     }
     @Override
     public Collection<? extends History> loadHistories(){
-        return null;
+        try{
+            return em.createQuery("SELECT book FROM Book book")
+                .getResultList();
+        } catch (Exception e){
+            return null;
+           }
     }
     
 }
