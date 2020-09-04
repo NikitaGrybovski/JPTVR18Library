@@ -19,11 +19,11 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Melnikov
- */
+
+
 public class SaverToFile {
+
+    
 
     public void saveBooks(ArrayList<Book> books) {
         FileOutputStream fileOutputStream = null;

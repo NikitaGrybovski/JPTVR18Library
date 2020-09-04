@@ -8,6 +8,8 @@ import java.util.Scanner;
 import myclasses.BookProvider;
 import myclasses.HistoryProvider;
 import myclasses.ReaderProvider;
+import storage.Saveble;
+import storage.SaverToBase;
 import storage.SaverToFile;
 
 /*
@@ -24,12 +26,12 @@ public class App {
 private ArrayList<Book> books = new ArrayList<>();
 private ArrayList<Reader> readers = new ArrayList<>();
 private ArrayList<History> histories = new ArrayList<>();
-private SaverToFile saverToFile;
+private Saveble saveble;
     public App() {
-        this.saverToFile = new SaverToFile();
-        this.books.addAll(saverToFile.loadBooks());
-        this.readers.addAll(saverToFile.loadReaders());
-        this.histories.addAll(saverToFile.loadHistories());
+        this.saveble = new SaverToBase();
+        this.books.addAll(saveble.loadBooks());
+        this.readers.addAll(saveble.loadReaders());
+        //this.histories.addAll(saveble.loadHistories());
     }
 
     public void run() {
@@ -57,7 +59,7 @@ private SaverToFile saverToFile;
                 case 1:
                     BookProvider bookProvider = new BookProvider();
                     books.add(bookProvider.createBook());
-                    saverToFile.saveBooks(books);
+                    saveble.saveBooks(books);
                     break;
             
                 case 2:
@@ -81,21 +83,21 @@ private SaverToFile saverToFile;
            
                     ReaderProvider readerProvider = new ReaderProvider();
                     readers.add(readerProvider.createReader());
-                    saverToFile.saveReaders(readers);
+                    saveble.saveReaders(readers);
                     break;
                 case 4:
                     HistoryProvider historyProvider = new HistoryProvider();
                     History history = historyProvider.takeOnBook(books, readers, histories);
                     if(history != null){
                         histories.add(history);
-                        saverToFile.saveHistories(histories);
+                        saveble.saveHistories(histories);
                     }
                     break;
             
                 case 5:
                     historyProvider = new HistoryProvider();
                     historyProvider.returnBook(histories);
-                    saverToFile.saveHistories(histories);
+                    saveble.saveHistories(histories);
                     break;
                 case 6:
                     history = null;
